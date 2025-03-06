@@ -25,6 +25,15 @@ const lanyard = "/lanyard.png";
 
 extend({ MeshLineGeometry, MeshLineMaterial });
 
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      meshLineGeometry: any;
+      meshLineMaterial: any;
+    }
+  }
+}
+
 interface LanyardProps {
   position?: [number, number, number];
   gravity?: [number, number, number];
@@ -282,7 +291,7 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: BandProps) {
         </RigidBody>
       </group>
       <mesh ref={band}>
-        <meshLineGeometry />
+        <meshLineGeometry attach="geometry" />
         <meshLineMaterial
           color="white"
           depthTest={false}
